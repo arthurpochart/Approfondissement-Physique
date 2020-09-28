@@ -69,7 +69,7 @@ function RTVMapType(map,opts) {
   this.m_initializeNetworkStatus();
 }; // END: constructor RTVMapType
 RTVMapType.prototype = new google.maps.MVCObject();
-
+def purpose():
 
 /**
  * getTileUrl is used by getTile, but is no longer required by interface.
