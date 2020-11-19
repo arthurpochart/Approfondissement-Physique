@@ -1,11 +1,11 @@
 from math import*
 
 def deuxpoints():
-    Xa=int(input("Ta position Xa"))
-    Ya=int(input("Ta position Ya"))
+    Xa=float(input("Ta position Xa"))
+    Ya=float(input("Ta position Ya"))
 
-    Xm=int(input("Ta position Xm"))
-    Ym=int(input("Ta position Ym"))
+    Xm=float(input("Ta position Xm"))
+    Ym=float(input("Ta position Ym"))
 
     m=(Ym-Ya)/(Xm-Xa)
     b=Ym-m*Xm
@@ -14,11 +14,11 @@ def deuxpoints():
     print("y=", m,"x+",b)
 
 def unpointunangle():
-    Xb = int(input("Ta position Xb"))
-    Yb = int(input("Ta position Yb"))
-    B = int(input("angle Beta entre l'axe du Nord et la droite MA"))
+    Xb = float(input("Ta position Xb"))
+    Yb = float(input("Ta position Yb"))
+    B = float(input("angle Beta entre l'axe du Nord et la droite MA"))
 
-    m = tan(B)
+    m = tan(pi/2 - B*pi/180)
     b=Yb-m*Xb
     print("y=", m,"x+",b)
 
