@@ -16,7 +16,7 @@ def deuxpoints():
 def unpointunangle():
     Xb = float(input("Ta position Xb"))
     Yb = float(input("Ta position Yb"))
-    B = float(input("angle Beta entre l'axe du Nord et la droite MA"))
+    B = float(input("angle Beta entre l'axe du Nord et la droite MA (en degré)"))
 
     m = tan(pi/2 - B*pi/180)
     b=Yb-m*Xb
