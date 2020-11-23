@@ -1,0 +1,19 @@
+import math
+x = longitude
+y = math.sqrt((ynord)^2+(ysud)^2)
+ynord = 5/2*math.log(math.tan(math.pi/4 + (2*lattitudenord)/5))
+ysud = 5/2*math.log(math.tan(math.pi/4 + (2*lattitudesud)/5))
+
+xmap = h*x
+largeur = img.size
+h = largeur/2*math.pi
+
+from PIL import Image
+img = Image.open('SCHOM9999.png')
+img.size
+
+ymap = H*y
+
+
+longueur = img.size
+H = longueur/y
