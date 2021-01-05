@@ -1,5 +1,9 @@
-def cartesian(self,longitude,latitude):
+def cartesian(longitude,latitude):
     R = 6378137.0   
     X = R * math.cos(longitude) * math.sin(latitude)
     Y = R * math.sin(longitude) * math.sin(latitude)
-    Z = R * math.cos(latitude)
+    print('x=',X,'y='Y)
+ 
+longitude=int(input('longitude:'))
+latitude=int(input('longitude'))
+cartesian(longitude,latitude):
