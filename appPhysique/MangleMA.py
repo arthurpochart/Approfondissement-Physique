@@ -13,19 +13,21 @@ def deuxpoints():
     print(b)
     print("y=", m,"x+",b)
 
-def unpointunangle():
-    Xb = float(input("Ta position Xb"))
-    Yb = float(input("Ta position Yb"))
-    B = float(input("angle Beta entre l'axe du Nord et la droite MA (en degré)"))
+def unameruncapunedistance():
+    Xamer = float(input("Ta position x de l amer"))
+    Yamer = float(input("Ta position y de l amer"))
+    cap = float(input("angle Beta entre l'axe du Nord et la droite MA (en degré)"))
+    distance=float(input('quelle distance parcours le bateau ?'))
 
-    m = tan(pi/2 - B*pi/180)
-    b=Yb-m*Xb
+    m = tan(pi/2 - cap*pi/180)
+    b=Yamer-m*Xamer
     print("y=", m,"x+",b)
+    x=sin(cap*pi/180)*distance
+    y=m*x+b
+    print(x,y)
 
 
-unpointunangle()
 
-
-
+unameruncapunedistance()
 
 
