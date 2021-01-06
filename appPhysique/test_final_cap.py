@@ -34,7 +34,8 @@ if rep >= 1 and rep <= 9:
             choix1 = int(input("\nVous disposez de :"))
         if choix1 == 1:
             Cm, D = cap_vrai_Cm_D()
-            calcul_cap_vrai_Cm_D(Cm, D)
+            Cv=calcul_cap_vrai_Cm_D(Cm, D)
+            print(" Le calcul est Cm + D = Cv \nLe Cap vrai (Cv) est donc égal à", Cv, "°")
         if choix1 == 2:
             Rs, der = cap_vrai_Rs_der()
             calcul_cap_vrai_Rs_der(Rs,der)
