@@ -7,7 +7,7 @@ def cap_vrai_Cm_D():
 
 def calcul_cap_vrai_Cm_D(Cm,D):
     Cv = Cm + D
-    print(" Le calcul est Cm + D = Cv \nLe Cap vrai (Cv) est donc égal à", Cv, "°")
+    
 
     #capvraichoix2
 def cap_vrai_Rs_der():
