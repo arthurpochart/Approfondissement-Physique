@@ -1,0 +1,275 @@
+from fonction_cap_final import*
+
+print(
+    "\n\nBienvenue sur notre application, \nElle va vous permettre de calculer différentes grandeurs nécessaires à la navigation. "
+    "\n\nSouhaitez-vous calculer: "
+    "\n\n 1. Le Cap vrai (Cv) \n  (angle entre l'axe du bateau et le Nord vrai (Nv)) "
+    "\n\n 2. Le Cap magnétique (Cm) \n  (angle entre l'axe du bateau et le Nord magnétique (Nm))"
+    "\n\n 3. Le Cap compas (Cc) \n  (angle entre l'axe du bateau et le Nord compas (Nc))"
+    "\n\n 4. La Déclinaison (D) \n  (angle entre Nv et Nm)"
+    "\n\n 5. La Déviation (d) \n  (angle entre Nm et Nc)"
+    "\n\n 6. La Variation (W) \n  (angle entre Nv et Nc)"
+    "\n\n 7. La Route surface (Rs) \n  (Route à tracer sur la carte en tenant compte de la dérive du vent)"
+    "\n\n 8. La Dérive (der) \n  (force du vent qui provoque une déviation du bateau)"
+    "\n\n 9. La Cascade \n  menu qui calcule toute la cascade du Cap Compas à la Route surface en affichant les différents caps au fur et à mesure"
+    "\n\n\n ATTENTION les corrections D, d et W se mesurent négativement vers l'ouest et postivement vers l'est (sens des aiguilles d'une montre)")
+
+rep = int(input("\nQuelle grandeur recherchez-vous? \nGrandeur recherhée :"))
+
+while rep < 1 or rep > 9:
+    print("Veuillez choisir un nombre entre 1 et 8")
+    rep = int(input("\nQuelle grandeur recherchez-vous? \nGrandeur recherhée :"))
+
+if rep >= 1 and rep <= 9:
+    if rep == 1:
+        print("\n\n/Vous cherchez le Cap Vrai(Cv)\ \n\nIl y a 3 façons de trouver le Cap Vrai")
+        print("\nVous connaissez soit :"
+              "\n 1.Cap magnétique (Cm) et Déclinaison (D)"
+              "\n 2.Route surface (Rs) et der"
+              "\n 3.Cap compas (Cc) et Variation (W)"
+              "\n 4.Cap compas (Cc),la Déclinaison (D) et la déviation (d)")
+        choix1 = int(input("\nVous disposez de :"))
+        while choix1 < 1 or choix1 > 4:
+            print("Veuillez choisir un nombre entre 1 et 4 qui correspondent aux options proposées")
+            choix1 = int(input("\nVous disposez de :"))
+        if choix1 == 1:
+            Cm, D = cap_vrai_Cm_D()
+            Cv=calcul_cap_vrai_Cm_D(Cm, D)
+            print(" Le calcul est Cm + D = Cv \nLe Cap vrai (Cv) est donc égal à", Cv, "°")
+        if choix1 == 2:
+            Rs, der = cap_vrai_Rs_der()
+            Cv=calcul_cap_vrai_Rs_der(Rs,der)
+            print(" Le calcul est Rs - der = Cv \nLe Cap vrai (Cv) est égal à", Cv, "°")
+        if choix1 == 3:
+            Cc, W = cap_vrai_Cc_W()
+            Cv=calcul_cap_vrai_Cc_W(Cc,W)
+            print(" Le calcul est Cc + W = Cv \nLe Cap vrai (Cv) est égal à", Cv, "°")
+        if choix1 == 4:
+            Cc, D, d = cap_vrai_Cc_D_d()
+            Cv=calcul_cap_vrai_Cc_D_d(Cc,D,d)
+            print(" Le calcul est Cc + D + d = Cv \nLe Cap vrai (Cv) est égal à", Cv, "°")
+
+    if rep == 2:
+        print("\n\n/Vous cherchez le Cap Magnétique(Cm)\ ")
+        print("\nVous connaissez soit :"
+              "\n 1.Cap vrai (Cv) et Déclinaison (D)"
+              "\n 2.Cap compas (Cc) et déviation(d)"
+              "\n 3.Cap compas (Cc), la Variation (W) et la Déclinaison (D)"
+              "\n 4.Cap vrai (Cv), la Variation(W) et la déviation (d) ")
+        choix2 = int(input("\nVous disposez de :"))
+        while choix2 < 1 or choix2 > 4:
+            print("Veuillez choisir un nombre entre 1 et 4 qui correspondent aux options proposées")
+            choix2 = int(input("\nVous disposez de :"))
+        if choix2 == 1:
+            Cv,D=cap_magnetique_Cv_D()
+            Cm=calcul_cap_magnetique_Cv_D(Cv,D)
+            print(" Le calcul est Cv - D = Cm \nLe Cap magnétique (Cm) est égal à", Cm, "°")
+        if choix2 == 2:
+            Cc,d =cap_magnetique_Cc_d()
+            Cm=calcul_cap_magnetique_Cc_d(Cc,d)
+            print(" Le calcul est Cc + d = Cm \nLe Cap magnétique (Cm) est égal à", Cm, "°")
+        if choix2 == 3:
+            Cc,W,D=cap_magnetique_Cc_W_D()
+            Cm=calcul_cap_magnetique_Cc_W_D(Cc, W, D)
+            print(" Le calcul est Cc + W - D = Cm \nLe Cap magnétique (Cm) est égal à", Cm, "°")
+        if choix2 == 4:
+            Cv,W,d=cap_magnetique_Cv_W_d
+            Cm=calcul_cap_magnetique_Cv_W_d(Cv, W, d)
+            print(" Le calcul est Cv - (W - d) = Cm \nLe Cap magnétique (Cm) est égal à", Cm, "°")
+
+    if rep == 3:
+        print("\n\n/Vous cherchez le Cap Compas(Cc)\ ")
+        print("\nVous connaissez soit :"
+              "\n 1.Cap vrai (Cv) et Variation(W)"
+              "\n 2.Cap magnétique (Cm) et déviation(d)"
+              "\n 3.Cap magnétique (Cm), la Variation (W) et la Déclinaison (D)"
+              "\n 4.Cap vrai (Cv), la déviation (d) et la Déclinaison (D)")
+        choix3= int(input("\nVous disposez de :"))
+        while choix3 < 1 or choix3 > 4:
+            print("Veuillez choisir un nombre entre 1 et 4 qui correspondent aux options proposées")
+            choix3 = int(input("\nVous disposez de :"))
+        if choix3 == 1:
+            Cv, W = cap_compas_Cv_W()
+            Cc=calcul_cap_compas_Cv_W(Cv,W)
+            print(" Le calcul est Cv - W = Cc \nLe Cap compas (Cc) est égal à", Cc, "°")
+        if choix3 == 2:
+            Cm,d=cap_compas_Cm_d()
+            Cc=calcul_cap_compas_Cm_d(Cm,d)
+            print(" Le calcul est Cm - d = Cc \nLe Cap compas (Cc) est égal à", Cc, "°")
+        if choix3 == 3:
+            Cm,W,D=cap_compas_Cm_W_D()
+            Cc=calcul_cap_compas_Cm_W_D(Cm,W,D)
+            print(" Le calcul est Cm - (W - D) = Cc \nLe Cap compas (Cc) est égal à", Cc, "°")
+        if choix3 == 4:
+            Cv,d,D=cap_compas_Cv_d_D()
+            Cc=calcul_cap_compas_Cv_d_D(Cv,d,D)
+            print(" Le calcul est Cv - (d + D) = Cc \nLe Cap compas (Cc) est égal à", Cc, "°")
+
+    if rep == 4:
+        print("\n\n/Vous cherchez la Déclinaison(D)\ ")
+        print("\nVous connaissez soit :"
+              "\n 1.La déviation(d) et la Variation(W)"
+              "\n 2.Le Cap magnétique(Cm) et le Cap vrai(Cv)"
+              "\n 3.Le Cap compas(Cc),le Cap magnétique(Cm) et la la Variation (W)"
+              "\n 4.Le Cap compas(Cc), le Cap vrai(Cv) et la déviation(d)"
+              "\n 5.La Route surface(Rs), la dérive(der), et le Cap magnétique(Cm)")
+        choix4 = int(input("\nVous disposez de :"))
+        while choix4 < 1 or choix4 > 5:
+            print("Veuillez choisir un nombre entre 1 et 5 qui correspondent aux options proposées")
+            choix4 = int(input("\nVous disposez de :"))
+        if choix4 == 1:
+            d,W=Declinaison_d_W()
+            D=calcul_Declinaison_d_W(d, W)
+            print(" Le calcul est W - d = D \nLa Déclinaison (D) est égale à",D,"°")
+        if choix4 == 2:
+            Cm,Cv=Declinaison_Cm_Cv()
+            D=calcul_Declinaison_Cm_Cv(Cm, Cv)
+            print(" Le calcul est Cv - Cm = D \nLa Déclinaison (D) est égale à",D,"°")
+        if choix4 == 3:
+            Cc,Cm,W=Declinaison_Cc_Cm_W()
+            D=calcul_Declinaison_Cc_Cm_W(Cc, Cm, W)
+            print(" Le calcul est Cc + W - Cm = D \nLa Déclinaison (D) est égale à",D,"°")
+        if choix4 == 4:
+            Cc,Cv,d=Declinaison_Cc_Cv_d()
+            D=calcul_Declinaison_Cc_Cv_d(Cc, Cv, d)
+            print(" Le calcul est Cv - d - Cc = D \nLa Déclinaison (D) est égale à",D, "°")
+        if choix4 == 5:
+            Rs,der,Cm=Declinaison_Rs_der_Cm()
+            D=calcul_Declinaison_Rs_der_Cm(Rs, der, Cm)
+            print(" Le calcul est Rs - der - Cm = D \n La Déclinaison (D) est égale à",D, "°")
+
+    if rep == 5:
+        print("\n\n/Vous cherchez la déviation(d)\ ")
+        print("\nVous connaissez soit :"
+              "\n 1.La Variation (W) et la Déclinaison(D)"
+              "\n 2.Le Cap magnétique (Cm) et le Cap compas(Cc)"
+              "\n 3.Le Cap vrai(Cv), la Déclinaison(D) et le Cap compas(Cc)"
+              "\n 4.Le Cap magnétique(Cm), la Variation(W) et le Cap vrai(Cv)"
+              "\n 5.La Route surface(Rs), la dérive(der),Le Cap magnétique (Cm) et la Variation(W)")
+        choix5 = int(input("\nVous disposez de :"))
+        while choix5 < 1 or choix5 > 5:
+            print("Veuillez choisir un nombre entre 1 et 5 qui correspondent aux options proposées")
+            choix5 = int(input("\nVous disposez de :"))
+        if choix5 == 1:
+            W,D=deviation_W_D()
+            d=calcul_deviation_W_D(W, D)
+            print(" Le calcul est W - D = d \nLa déviation (d) est égale à",d, "°")
+        if choix5 == 2:
+            Cm,Cc=deviation_Cm_Cc()
+            d=calcul_deviation_Cm_Cc(Cm, Cc)
+            print(" Le calcul est Cm - Cc = d \nLa déviation (d) est égale à",d, "°")
+        if choix5 == 3:
+            Cv,D,Cc=deviation_Cv_D_Cc()
+            d=calcul_deviation_Cv_D_Cc(Cv, D, Cc)
+            print(" Le calcul est Cv - D - Cc = d \nLa déviation (d) est égale à",d, "°")
+        if choix5 == 4:
+            Cm,W,Cv=deviation_Cm_W_Cv()
+            d=calcul_deviation_Cm_W_Cv(Cm, W, Cv)
+            print(" Le calcul est Cm + W - Cv = d \nLa déviation (d) est égale à",d, "°")
+        if choix5 == 5:
+            Rs,der,Cm,W=deviation_Rs_der_Cm_W()
+            d=calcul_deviation_Rs_der_Cm_W(Rs, der, Cm, W)
+            print(" Le calcul est -Rs + der + W + Cm = d \nLa déviation (d) est égale à",d, "°")
+
+    if rep == 6:
+        print("\n\n/Vous cherchez la Variation (W)\ ")
+        print("\nVous connaissez soit :"
+              "\n 1.La Déclinaison (D) et la déviation (D)"
+              "\n 2.Le Cap vrai (Cv) et le Cap compas(Cc)"
+              "\n 3.La Route surface(Rs), la dérive(der) et le Cap compas(Cc)"
+              "\n 4.Le Cap magnétique(Cm), le Cap compas(Cc) et la Déclinaison(D)"
+              "\n 5.Le Cap vrai(Cv), le Cap magnétique(Cm) et la déviation(d)")
+        choix6 = int(input("\nVous disposez de :"))
+        while choix6 < 1 or choix6 > 5:
+            print("Veuillez choisir un nombre entre 1 et 5 qui correspondent aux options proposées")
+            choix6 = int(input("\nVous disposez de :"))
+        if choix6 == 1:
+            D,d=Variation_D_d()
+            W=calcul_Variation_D_d(D, d)
+            print(" Le calcul est D + d = W \nLa variation (W)  est égale à", W, "°")
+        if choix6 == 2:
+            Cv,Cc=Variation_Cv_Cc()
+            W=calcul_Variation_Cv_Cc(Cv, Cc)
+            print(" Le calcul est Cv - Cc = W \nLa variation (W)  est égale à",W, "°")
+        if choix6 == 3:
+            Rs,der,Cc=Variation_Rs_der_Cc()
+            W=calcul_Variation_Rs_der_Cc(Rs, der, Cc)
+            print(" Le calcul est Rs - der - Cc = W \nLa variation (W)  est égale à",W, "°")
+        if choix6 == 4:
+            Cm,Cc,D=Variation_Cm_Cc_D()
+            W=calcul_Variation_Cm_Cc_D(Cm, Cc, D)
+            print(" Le calcul est Cm + D - Cc = W \nLa variation (W)  est égale à",W, "°")
+        if choix6 == 5:
+            Cv,Cm,d=Variation_Cv_Cm_d()
+            W=calcul_Variation_Cv_Cm_d(Cv, Cm, d)
+            print(" Le calcul est Cv + d - Cm = W \nLa variation (W) est égale à",W, "°")
+
+
+    if rep == 7:
+        print("\n\n/Vous cherchez la Route surface(Rs)\ ")
+        print("\nVous connaissez soit :"
+              "\n 1.Le Cap vrai (Cv) et la dérive(der)"
+              "\n 2.Le Cap compas (Cc), la variation (W) et la dérive(der)"
+              "\n 3.Le Cap magnétique(m), la Déclinaison(D) et la dérive(der)")
+        choix7 = int(input("\nVous disposez de :"))
+        while choix7 < 1 or choix7 > 3:
+            print("Veuillez choisir un nombre entre 1 et 3 qui correspondent aux options proposées")
+            choix7 = int(input("\nVous disposez de :"))
+        if choix7 == 1:
+            Cv,der=Route_Surface_Cv_der()
+            Rs=calcul_Route_Surface_Cv_der(Cv,der)
+            print(" Le calcul est Cv + der = Rs \nLa Route surface (Rs) est égale à",Rs, "°")
+        if choix7 == 2:
+            Cc,W,der=Route_Surface_Cc_W_der()
+            Rs=calcul_Route_Surface_Cc_W_der(Cc,W,der)
+            print(" Le calcul est Cc + W + der = Rs \nLa Route surface (Rs) est égale à",Rs, "°")
+        if choix7 == 3:
+            Cm,D,der=Route_Surface_Cm_D_der()
+            Rs=calcul_Route_Surface_Cm_D_der(Cm,D,der)
+            print(" Le calcul est Cm + D + der = Rs \nLa Route surface (Rs) est égale à",Rs , "°")
+
+    if rep == 8:
+        print("\n\n/Vous cherchez la Dérive(der)\ ")
+        print("\nVous connaissez soit :"
+              "\n 1.Le Cap vrai (Cv) et la Route surface(Rs)"
+              "\n 2.Le Cap compas (Cc), la variation (W) et la Route surface(Rs)"
+              "\n 3.Le Cap magnétique(Cm), la Déclinaison(D) et la Route surface(Rs)")
+        choix8 = int(input("\nVous disposez de :"))
+        while choix8 < 1 or choix8 > 3:
+            print("Veuillez choisir un nombre entre 1 et 3 qui correspondent aux options proposées")
+            choix8 = int(input("\nVous disposez de :"))
+        if choix8 == 1:
+            Cv,Rs=derive_Cv_Rs()
+            der=calcul_derive_Cv_Rs(Rs,Cv)
+            print(" Le calcul est Rs - Cv = der \nLa dérive (der) est égale à",der, "°")
+        if choix8 == 2:
+            Cc,W,Rs=derive_Cc_W_Rs()
+            der=calcul_derive_Cc_W_Rs(Cc,W,Rs)
+            print(" Le calcul est Rs - Cc - W = der \nLa dérive (der) est égale à", der , "°")
+        if choix8 == 3:
+            Cm,D,Rs=derive_Cm_D_Rs()
+            der=calcul_derive_Cm_D_Rs(Rs,Cm,D)
+            print(" Le calcul est Rs - Cm - D = der \nLa dérive (der) est égale à",der, "°")
+
+
+    if rep == 9:
+        print("\n\nVous avez le Cap Compas et la dérive (der) et d'autres donnés et vous souhaitez obtenir la route surface")
+        print("\nVous connaissez soit :"
+              "\n 1.Le CC + la variation (W) + der \n (affichage du cap vrai en plus)"
+              "\n 2.Le CC + la déviation (d) + la Déclinaison(D) + der \n (affichage du cap vrai ET cap magnétique en plus)")
+        choix9 = int(input("Vous disposez de :"))
+        while choix9 < 1 or choix9 > 2:
+            print("Veuillez choisir un nombre entre 1 et 2 qui correspondent aux options proposées")
+            choix9 = float(input("Vous disposez de :"))
+        if choix9 == 1:
+            Cc,W,der=cascade_1()
+            Cv,Rs=calcul_cascade_1(Cc,W,der)
+            print("Le cap vrai (Cv) est égal à", Cv,"°\n (Cc + W = Cv")
+            print("La Route surface (Rs) est",Rs, "° \n (Rs = Cv + der)")
+        if choix9 == 2:
+            Cc,d,D,der = cascade_2()
+            Cm,Cv,W,Rs= calcul_cascade_2(Cc,d,D,der)
+            print("Le cap magnétique s'écrit Cc + d = Cm, soit Cm=", Cm,
+                  "° \n Le cap vrai s'écrit Cv = Cm + D, soit Cv=", Cv,
+                  "° \n La variation (W) est de ", W, "°   (W=D+d)" )
+            print("La Route surface (Rs) est", der,"°  (Rs = Cv + der)")
