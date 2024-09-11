@@ -1,3 +1,3 @@
 # Approfondissement-Physique
 # Professeur: M. Schott
-# Groupe: Ethan Czeladka, Arthur Pochart, Sibylle Degos, Guillaume Duffau
+# Groupe: Ethan, Arthur Pochart, Sibylle Degos, Guillaume Duffau
